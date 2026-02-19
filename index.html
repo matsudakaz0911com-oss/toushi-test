@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>資産運用・NISA 習得テスト</title>
+    <title>成人のお祝い：投資知識確認テスト</title>
     <style>
         :root {
             --primary-color: #2c3e50;
-            --accent-color: #3498db;
+            --accent-color: #e74c3c;
             --success-color: #27ae60;
-            --error-color: #e74c3c;
-            --bg-color: #f4f7f6;
+            --bg-color: #f9f9f9;
         }
 
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.6;
             background-color: var(--bg-color);
             color: var(--primary-color);
-            line-height: 1.6;
             margin: 0;
             padding: 20px;
         }
@@ -25,7 +24,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
+            background: #fff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -34,243 +33,265 @@
         h1 {
             text-align: center;
             color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
+            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
         }
 
-        .quiz-info {
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        .intro-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 30px;
             font-weight: bold;
-            text-align: center;
-            border: 1px solid #bbdefb;
+            white-space: pre-wrap;
         }
 
-        .question-card {
+        .quiz-item {
             margin-bottom: 30px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background: #fff;
         }
 
         .question-text {
-            font-size: 1.1em;
+            font-size: 1.1rem;
             font-weight: bold;
             margin-bottom: 15px;
         }
 
-        .option-item {
-            margin-bottom: 10px;
-        }
-
-        label {
+        .options label {
             display: block;
-            padding: 12px;
-            background: #fdfdfd;
-            border: 1px solid #eee;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f1f1f1;
             border-radius: 5px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: background 0.2s;
         }
 
-        label:hover {
-            background: #f1f1f1;
+        .options label:hover {
+            background: #e2e2e2;
         }
 
-        input[type="radio"] {
+        .options input {
             margin-right: 10px;
         }
 
-        .btn-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        button {
-            background-color: var(--accent-color);
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
             color: white;
             border: none;
-            padding: 15px 50px;
-            font-size: 1.2em;
-            border-radius: 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
             cursor: pointer;
-            font-weight: bold;
+            margin-top: 20px;
         }
 
-        button:hover {
+        .btn-submit:hover {
             opacity: 0.9;
-            transform: translateY(-2px);
         }
 
         #result {
             display: none;
-            margin-top: 30px;
-            padding: 25px;
-            border-radius: 8px;
             text-align: center;
-            font-size: 1.2em;
+            padding: 30px;
         }
 
-        .pass { background-color: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
-        .fail { background-color: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
+        .pass {
+            color: var(--success-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: var(--accent-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .review-section {
+            text-align: left;
+            margin-top: 30px;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
 
         .explanation {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: #fff9c4;
-            border-left: 5px solid #fbc02d;
-            font-size: 0.95em;
-            text-align: left;
+            background: #f0f7ff;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
         }
 
-        .answer-label { font-weight: bold; }
+        @media print {
+            .btn-submit { display: none; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>習得確認テスト</h1>
-    
-    <div class="quiz-info">
-        全29問からランダムに15問出題されます。<br>
-        15問中12問以上の正解（80点以上）で合格です！
+    <h1>資産運用 基礎知識テスト</h1>
+
+    <div id="intro">
+        <div class="intro-box">【成人のお祝いのお金は、じいじとばあばが大変な思いをして貯めたお金なので、君の未来でより有効に活かせるようにして欲しいです。そのためには投資の長期運用が最も適切だと思いますが、リスクがないこともなく、これをきっかけに変なものに手を出しても困るので、最低限の知識を勉強してからにしてください。９５点の合格画面をスクショしてパパに送ってくれれば、ＮＩＳＡ口座を開設済みなのを条件に預かったお金を渡します。がんばってください！】</div>
+        <button class="btn-submit" onclick="startQuiz()">テストを開始する</button>
     </div>
 
-    <form id="quiz-form">
-        <div id="quiz-container"></div>
-        
-        <div class="btn-container">
-            <button type="button" onclick="calculateScore()">回答を提出する</button>
-        </div>
-    </form>
+    <div id="quiz-area" style="display:none;">
+        <form id="quiz-form">
+            <div id="questions-container"></div>
+            <button type="button" class="btn-submit" onclick="calcScore()">採点する</button>
+        </form>
+    </div>
 
     <div id="result">
-        <h2 id="result-score"></h2>
-        <p id="result-message"></p>
-        <button type="button" onclick="location.reload()" style="background-color: var(--primary-color);">もう一度挑戦する</button>
+        <div id="result-message"></div>
+        <p id="score-display" style="font-size: 1.5rem; margin: 20px 0;"></p>
+        <div id="instruction-after"></div>
+        <button class="btn-submit" id="retry-btn" onclick="location.reload()" style="display:none;">もう一度挑戦する</button>
+        
+        <div class="review-section">
+            <h3>正解と解説</h3>
+            <div id="review-content"></div>
+        </div>
     </div>
 </div>
 
 <script>
-const allQuestions = [
-    // --- 第1回提供分 ---
-    { q: "S&P 500とはどのような指数ですか？", a: ["日本、アメリカ、世界のIT企業からなる指数", "アメリカの時価総額の大きい主要500社の株価指数", "全世界のIT企業500社の株価指数"], ans: 1, ex: "S&P 500は、アメリカの主要500社の時価総額に基づいた指数です。" },
-    { q: "S&P 500に何年以上投資すればプラス収益になる確率がほぼ100%ですか？", a: ["5年以上", "10年以上", "15年以上"], ans: 2, ex: "過去のデータでは15年以上の保有でマイナスになったことはありません。" },
-    { q: "ウォーレン・バフェットが家族に推奨している指数は何ですか？", a: ["日経平均", "S&P 500", "ナスダック"], ans: 1, ex: "バフェットは遺言で資産の90%をS&P 500に投資するよう勧めています。" },
-    { q: "アメリカ株への投資が推奨される理由の一つは？", a: ["人口が増加していく先進国だから", "税金が世界一安いから", "法律で株価の下落が禁じられているから"], ans: 0, ex: "人口増加は経済成長の強いエンジンになります。" },
-    { q: "eMAXIS Slim 米国株式（S&P 500）の信託報酬（100万円預けた場合）は？", a: ["約9,000円", "約900円", "約90円"], ans: 1, ex: "年率約0.093%のため、100万円で年間約900円程度です。" },
-    { q: "全世界株式（オルカン）一本で、世界の市場の約何%をカバーできますか？", a: ["約50%", "約85%", "約100%"], ans: 1, ex: "オルカンは約2,900社、市場の約85%を網羅します。" },
-    { q: "「全世界株式（オルカン）」のうち、アメリカが占める割合は？", a: ["約30%", "約60%", "約90%"], ans: 1, ex: "時価総額ベースで約6割がアメリカです。" },
-    { q: "投資信託の「信託報酬」はいつ支払われますか？", a: ["購入時に一括", "年に一度振込", "毎日資産から差し引かれる"], ans: 2, ex: "信託報酬は日々、運用資産から自動的に引かれています。" },
-    { q: "オルカンのメリット「新陳代謝システム」とは？", a: ["成長企業の割合を自動で増やし、低迷企業を減らす", "全銘柄を定期的に買い替える", "AIが将来を予想して買う"], ans: 0, ex: "時価総額の変化に合わせて保有比率が自動調整されます。" },
-    { q: "指数に連動した成果を目指す投資手法を何と呼びますか？", a: ["アクティブ投資", "インデックス投資", "デイトレード"], ans: 1, ex: "指標（インデックス）と同じ動きを目指す手法です。" },
-    { q: "アクティブファンドが長期でインデックスに勝てる確率は？", a: ["約1割", "約5割", "約9割"], ans: 0, ex: "15年以上の長期では約9割のアクティブファンドが負けています。" },
-    { q: "毎月同じ金額を購入する手法を何と言いますか？", a: ["ドルコスト平均法", "複利運用", "損切り"], ans: 0, ex: "定額購入で平均購入単価を平準化する手法です。" },
-    { q: "株式投資の「常識的な利回り」は年利何%前後？", a: ["1〜2%", "3〜9%", "20〜30%"], ans: 1, ex: "米国株で7-9%程度が歴史的な平均です。" },
-    { q: "新NISAの「生涯投資枠」は最大いくら？", a: ["800万円", "1,200万円", "1,800万円"], ans: 2, ex: "一人あたり合計1,800万円が上限です。" },
-    { q: "生涯投資枠のうち「成長投資枠」は最大いくら？", a: ["600万円", "1,200万円", "1,800万円"], ans: 1, ex: "1,800万円のうち成長枠は1,200万円まで利用可能です。" },
-    { q: "新NISAで年間に投資できる上限額は？", a: ["120万円", "240万円", "360万円"], ans: 2, ex: "つみたて120万＋成長240万＝年間360万円です。" },
-    { q: "新NISAの非課税期間はどうなっていますか？", a: ["20年間", "無期限", "50年間"], ans: 1, ex: "新NISAは期限なく非課税で保有できます。" },
-    { q: "新NISAで売却した枠はどうなりますか？", a: ["消滅する", "翌年以降に再利用可能", "即日復活する"], ans: 1, ex: "売却した「簿価」分の枠が翌年復活します。" },
-    { q: "非課税枠の管理は何で行われますか？", a: ["時価", "簿価（取得価額）", "売却価格"], ans: 1, ex: "購入時の金額（簿価）で1,800万円を管理します。" },
-    { q: "NISA内で損が出た場合、他口座と損益通算できますか？", a: ["できる", "できない", "10万円まで可能"], ans: 1, ex: "NISAは損益通算や繰越控除の対象外です。" },
-    { q: "新NISAを最短何年で埋めることができますか？", a: ["1年", "5年", "10年"], ans: 1, ex: "360万円×5年で1,800万円となります。" },
-    { q: "NISAとiDeCo、どちらの優先順位が高いとされていますか？", a: ["iDeCo", "NISA", "どちらでも同じ"], ans: 1, ex: "引き出し制限のないNISAを優先するのが一般的です。" },
-
-    // --- 今回追加分 (Q23-Q29) ---
-    { q: "インデックスファンドとは何を目指す投資信託？", a: ["市場平均を上回る成果", "市場平均と同じ値動き", "元本保証"], ans: 1, ex: "インデックスファンドは市場平均（指数）に連動することを目指す。勝とうとするのではなく、ついていく。" },
-    { q: "インデックスファンドが長期投資と相性が良い理由は？", a: ["常に値上がりするから", "広く分散されているから", "高配当だから"], ans: 1, ex: "1社ではなく市場全体に分散されているため、個別企業の倒産リスクを抑えられる。" },
-    { q: "インデックスファンドの一般的な特徴は？", a: ["手数料が比較的低い", "短期で大きく儲かる", "値動きがほぼない"], ans: 0, ex: "アクティブ運用より運用コストが低いことが多い。長期ではコスト差が大きな差になる。" },
-    { q: "市場全体が成長すれば、インデックスファンドはどうなる？", a: ["必ず下がる", "一緒に成長しやすい", "変わらない"], ans: 1, ex: "指数に連動するため、経済成長の恩恵を受けやすい。" },
-    { q: "インデックスファンドに投資する意味として最も近いものは？", a: ["1社に集中投資すること", "経済全体に投資すること", "短期売買で利益を狙うこと"], ans: 1, ex: "インデックス投資は「企業を選ぶ」のではなく「経済全体を買う」発想。" },
-    { q: "インデックス投資の弱点は？", a: ["市場が下落すれば一緒に下がる", "分散できない", "手数料が非常に高い"], ans: 0, ex: "市場平均に連動するため、暴落時は避けられない。ただし長期前提で考える。" },
-    { q: "アクティブファンドとの違いとして正しいものは？", a: ["インデックスは市場を上回ることを目指す", "アクティブは市場平均を目指す", "アクティブは市場を上回ることを目指す"], ans: 2, ex: "アクティブは「勝ちにいく運用」。その分コストが高くなる傾向がある。" }
+const quizData = [
+    { q: "NISAの最大のメリットは？", a: ["元本保証がある", "運用益が非課税になる", "手数料が必ず無料になる"], c: 1, e: "通常は利益に約20％の税金がかかるが、新NISAではそれが非課税。少額投資非課税制度。個人が非課税で投資ができる制度。元本保証制度ではない。" },
+    { q: "新NISAの非課税期間は？", a: ["20年", "5年", "無期限"], c: 2, e: "旧制度の５年間と違い期限がないため、若い時期から始める長期投資と非常に相性が良い。" },
+    { q: "新NISAは「つみたて投資枠」と何で構成されている？", a: ["一般投資枠", "成長投資枠", "高配当枠"], c: 1, e: "金融庁が厳選した安全性の高いインデックスファンドしか買えない「つみたて投資枠」と、個別株なども買える「成長投資枠」がある。" },
+    { q: "投資信託とは何か？", a: ["神様の信託に基づいて行う投資", "集めた資金をひとまとめにし、分散投資する金融商品", "人に言われた株に投資すること"], c: 1, e: "投資信託には指数連動型のインデックスファンドと、運用のプロが組み合わせを考えるアクティブファンドがある。" },
+    { q: "インデックスファンドとは何を目指す投資信託？", a: ["市場平均を上回る成果", "市場平均と同じ値動き", "元本保証"], c: 1, e: "インデックスファンドは市場平均（指数）に連動することを目指す。勝とうとするのではなく、ついていく。" },
+    { q: "アクティブファンドとの違いとして正しいものは？", a: ["インデックスは市場を上回ることを目指す", "アクティブは市場平均を目指す", "アクティブは市場を上回ることを目指す"], c: 2, e: "アクティブは「勝ちにいく運用」。その分コストが高くなる傾向がある。" },
+    { q: "インデックスファンドの一般的な特徴は？", a: ["手数料が比較的低い", "短期で大きく儲かる", "値動きがほぼない"], c: 0, e: "アクティブ運用より運用コストが低いことが多い。長期ではコスト差が大きな差になる。" },
+    { q: "分散投資の目的は？", a: ["必ず儲ける", "リスクを抑える", "流行に乗る"], c: 1, e: "1つに集中すると大きな損失を受ける可能性があるため、リスクを分散する。" },
+    { q: "投資の三原則は？", a: ["長期・分散・積立", "集中・短期・高配当", "一括・集中・短期"], c: 0, e: "長期・分散・積立は再現性が高く、リスクが低く、感情に左右されにくい基本戦略。" },
+    { q: "若いうちに始める最大のメリットは？", a: ["収入が多いから", "時間を味方にできるから", "若者優遇制度があるから"], c: 1, e: "複利は時間が長いほど効果を発揮する。若さは最大の武器。" },
+    { q: "若い投資家の最大の武器は？", a: ["元本", "高利回り", "長い時間"], c: 2, e: "時間が長いほど複利効果と回復期間を確保できる。" },
+    { q: "20歳から毎月1万円×40年と30歳から毎月2万円×30年で差が開きにくい理由は？", a: ["若者が優遇されるべきだから", "複利は元金だけでなく利息にも掛かるため、時間が長いほど強く働くから", "使える制度が違うから"], c: 1, e: "10年の時間差は非常に大きい。期間延長はリスクを増やさず複利効果を高められる。" },
+    { q: "長期投資で最も重要なのは？", a: ["完璧なタイミング", "継続", "流行"], c: 1, e: "市場予測しタイミングを読むよりも、早く始めて続けることが成果を左右する。" },
+    { q: "毎月一定額積立を何という？", a: ["一括投資法", "ドルコスト平均法", "高値追随法"], c: 1, e: "商品の価格に関係なく一定額を購入する。暴落時にも多く買えるため、狼狽しなくて済む。" },
+    { q: "積立投資のメリットは？", a: ["常に安値で買える", "感情に左右されにくい", "必ず利益が出る"], c: 1, e: "自動積立は判断ミスを減らす。安値保証や利益保証ではない。" },
+    { q: "価格が下がり続けるとき積立投資家にとっては？", a: ["失敗", "安く多く買える期間", "売却すべき"], c: 1, e: "長期前提なら、下落中は多くの口数を買える仕込み期。" },
+    { q: "暴落時の基本行動は？", a: ["全売却", "積立停止", "継続"], c: 2, e: "感情で止めると安値購入機会を失う。長期前提なら継続が基本。" },
+    { q: "下落相場で積立を止める最大の問題は？", a: ["手数料増", "安値購入機会を失う", "非課税枠減少"], c: 1, e: "下落局面こそ口数を増やせる時期。止めると将来の回復利益を失う。" },
+    { q: "元本保証がないことは？", a: ["投資の前提", "異常", "違法"], c: 0, e: "投資は価格変動があることが前提。元本保証している高利回りの商品は詐欺。" },
+    { q: "短期的な値下がりは？", a: ["普通に起こる", "失敗", "撤退サイン"], c: 0, e: "ここ数十年の間にもショックや戦争等があり、短期変動はよくある自然な現象。" },
+    { q: "「みんなが買っているから買う」は？", a: ["正しい", "危険", "安全"], c: 1, e: "群集心理に流されると高値掴みの原因になる。" },
+    { q: "投資で一番怖いのは？", a: ["暴落", "感情売買", "長期保有"], c: 1, e: "感情で売買すると安値売り・高値買いになりやすい。狼狽売りともいう。" },
+    { q: "現金のまま保管していると○○○に負ける。", a: ["インフレ（物価上昇）", "デフレ（物価下落）", "税金上昇"], c: 0, e: "インフレにより現金の価値は相対的に下がる。投資は物価上昇への対策でもある。" },
+    { q: "インデックスファンドが長期投資と相性が良い理由は？", a: ["常に値上がりするから", "広く分散されているから", "高配当だから"], c: 1, e: "1社ではなく市場全体に分散されているため、個別企業の倒産リスクを抑えられる。" },
+    { q: "市場全体が成長すれば、インデックスファンドはどうなる？", a: ["必ず下がる", "一緒に成長しやすい", "変わらない"], c: 1, e: "指数に連動するため、経済成長の恩恵を受けやすい。" },
+    { q: "インデックス投資の弱点は？", a: ["市場が下落すれば一緒に下がる", "分散できない", "手数料が非常に高い"], c: 0, e: "市場平均に連動するため、暴落時は避けられない。ただし長期前提で考える。" },
+    { q: "インデックスファンドに投資する意味として最も近いものは？", a: ["1社に集中投資すること", "経済全体に投資すること", "短期売買で利益を狙うこと"], c: 1, e: "インデックス投資は「企業を選ぶ」のではなく「経済全体を買う」発想。" },
+    { q: "最も再現性が高く人類の経済成長全体に分散して投資できる商品は？", a: ["オカルン", "オルカス", "オルカン"], c: 2, e: "オルカン（オール・カントリー）は全世界の株式に時価総額加重で投資する商品。" },
+    { q: "購入する投資信託を選ぶ時に着目すべき点は？", a: ["手数料（信託報酬）", "有名な運用者か", "銀行の窓口で買えるか"], c: 0, e: "信託報酬のわずかな差が、20〜30年後には数十万〜百万円単位の差になる。" },
+    { q: "未来をよくするための行動として、最も大切なことは？", a: ["完璧を目指すこと", "あきらめずに続けること", "ただ今を楽しむこと"], c: 1, e: "「小さなことを重ねることが、とんでもないところに行くただひとつの道」 （イチロー）" }
 ];
 
-let currentQuestions = [];
+let shuffledQuiz = [];
 
 function startQuiz() {
-    // 全問からランダムに15問抽出
-    const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
-    currentQuestions = shuffled.slice(0, 15);
-
-    const container = document.getElementById('quiz-container');
-    container.innerHTML = '';
-
-    currentQuestions.forEach((q, index) => {
-        const card = document.createElement('div');
-        card.className = 'question-card';
-        card.id = `q-card-${index}`;
-
-        let optionsHtml = '';
-        q.a.forEach((opt, optIndex) => {
-            optionsHtml += `
-                <div class="option-item">
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('quiz-area').style.display = 'block';
+    
+    // シャッフル
+    shuffledQuiz = [...quizData].sort(() => Math.random() - 0.5);
+    
+    const container = document.getElementById('questions-container');
+    shuffledQuiz.forEach((data, index) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-item';
+        div.innerHTML = `
+            <div class="question-text">Q${index + 1}. ${data.q}</div>
+            <div class="options">
+                ${data.a.map((ans, i) => `
                     <label>
-                        <input type="radio" name="question${index}" value="${optIndex}">
-                        ${['A', 'B', 'C'][optIndex]}. ${opt}
+                        <input type="radio" name="q${index}" value="${i}" required>
+                        ${ans}
                     </label>
-                </div>
-            `;
-        });
-
-        card.innerHTML = `
-            <div class="question-text">Q${index + 1}. ${q.q}</div>
-            <div class="options-list">${optionsHtml}</div>
-            <div id="explanation-${index}" class="explanation">
-                <span class="answer-label">正解：${['A', 'B', 'C'][q.ans]}</span><br>
-                <strong>【解説】</strong> ${q.ex}
+                `).join('')}
             </div>
         `;
-        container.appendChild(card);
+        container.appendChild(div);
     });
 }
 
-function calculateScore() {
-    let correctCount = 0;
+function calcScore() {
     const form = document.getElementById('quiz-form');
+    const formData = new FormData(form);
+    let score = 0;
     
-    currentQuestions.forEach((q, index) => {
-        const selected = form.querySelector(`input[name="question${index}"]:checked`);
-        const card = document.getElementById(`q-card-${index}`);
-        const exp = document.getElementById(`explanation-${index}`);
-        
-        exp.style.display = 'block';
-        
-        if (selected && parseInt(selected.value) === q.ans) {
-            correctCount++;
-            card.style.border = '2px solid var(--success-color)';
-            card.style.backgroundColor = '#f0fff4';
-        } else {
-            card.style.border = '2px solid var(--error-color)';
-            card.style.backgroundColor = '#fff5f5';
+    // 全て回答しているかチェック
+    let answeredCount = 0;
+    for (let pair of formData.entries()) { answeredCount++; }
+    if (answeredCount < 30) {
+        alert("まだ未回答の問題があります。");
+        return;
+    }
+
+    shuffledQuiz.forEach((data, index) => {
+        const userAnswer = formData.get(`q${index}`);
+        if (parseInt(userAnswer) === data.c) {
+            score++;
         }
     });
 
-    const finalScore = Math.round((correctCount / 15) * 100);
-    const resultDiv = document.getElementById('result');
-    const scoreTitle = document.getElementById('result-score');
-    const resultMsg = document.getElementById('result-message');
-
-    scoreTitle.innerText = `得点：${finalScore}点 （${correctCount}問正解 / 15問中）`;
-    resultDiv.style.display = 'block';
-
-    if (finalScore >= 80) {
-        resultDiv.className = 'pass';
-        resultMsg.innerText = "合格です！おめでとうございます！";
-    } else {
-        resultDiv.className = 'fail';
-        resultMsg.innerText = "不合格です。合格には80点（12問正解）以上が必要です。";
-    }
-
-    window.scrollTo({ top: resultDiv.offsetTop - 20, behavior: 'smooth' });
+    const percent = (score / 30) * 100;
+    showResult(score, percent);
 }
 
-startQuiz();
+function showResult(score, percent) {
+    document.getElementById('quiz-area').style.display = 'none';
+    const resultDiv = document.getElementById('result');
+    resultDiv.style.display = 'block';
+    
+    const scoreDisplay = document.getElementById('score-display');
+    const messageDiv = document.getElementById('result-message');
+    const instructionDiv = document.getElementById('instruction-after');
+    const retryBtn = document.getElementById('retry-btn');
+    
+    scoreDisplay.innerText = `得点: ${score} / 30 点 (${Math.round(percent)}%)`;
+
+    if (percent >= 95) {
+        messageDiv.innerHTML = `<span class="pass">合格おめでとう！</span>`;
+        instructionDiv.innerHTML = `
+            <div style="background:#e8f5e9; padding:20px; border-radius:10px; margin-top:20px; border: 2px solid #2e7d32;">
+                <p>素晴らしい結果です。最低限の知識は身につきました。</p>
+                <p><strong>【この画面をスクリーンショットしてパパに送ってください】</strong></p>
+                <p>NISA口座の開設が確認でき次第、お祝い金を渡します。長期運用で未来を豊かにしましょう！</p>
+            </div>
+        `;
+        retryBtn.style.display = 'none';
+    } else {
+        messageDiv.innerHTML = `<span class="fail">不合格です</span>`;
+        instructionDiv.innerHTML = `<p>合格には95点（29問以上の正解）が必要です。もう一度復習して挑戦してください。</p>`;
+        retryBtn.style.display = 'block';
+    }
+
+    // 解説の表示
+    const reviewContent = document.getElementById('review-content');
+    reviewContent.innerHTML = '';
+    shuffledQuiz.forEach((data, index) => {
+        const div = document.createElement('div');
+        div.style.marginBottom = '20px';
+        div.innerHTML = `
+            <strong>Q${index + 1}. ${data.q}</strong><br>
+            正解: ${data.a[data.c]}
+            <div class="explanation">解説: ${data.e}</div>
+        `;
+        reviewContent.appendChild(div);
+    });
+
+    window.scrollTo(0, 0);
+}
 </script>
 
 </body>
